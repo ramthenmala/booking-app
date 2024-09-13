@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+/node_modules
+.pnpm/
+
+# Build output
+.next/
+out/
+build/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Log files
+logs/
+*.log
+
+# npm package lock files
+package-lock.json
+pnpm-lock.yaml
+
+# Coverage directory used by tools like istanbul
+coverage/
