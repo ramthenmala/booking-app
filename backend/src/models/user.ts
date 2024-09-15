@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcryptjs'
 import { saltRoutnds } from "../constants/constants";
 
 // TS Interface
@@ -19,10 +19,11 @@ const userSchema = new Schema({
     lastName: { type: String, required: true },
 })
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, saltRoutnds)
     }
+    next();
 })
 
 const User = model<UserType>('User', userSchema);
