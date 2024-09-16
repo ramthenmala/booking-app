@@ -3,7 +3,8 @@ import cors from 'cors';
 import 'dotenv/config';
 import mongoose from 'mongoose';
 
-import userRoute from './routes/users'
+import userRoute from './routes/users';
+import authRoute from './routes/auth';
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 app.use('/api/users', userRoute);
+app.use('/api/auth', authRoute);
 
 app.listen(4001, () => {
     console.log('Server running on 4001')

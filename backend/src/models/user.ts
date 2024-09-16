@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
 import { saltRoutnds } from "../constants/constants";
 
 // TS Interface
