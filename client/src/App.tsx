@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
-import Layout from "./Components/Layout/Layout"
+import Layout from "./Components/Layout"
 import Register from './pages/Register';
 
 function App() {

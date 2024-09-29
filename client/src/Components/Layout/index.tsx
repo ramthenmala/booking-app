@@ -1,6 +1,6 @@
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header"
-import Hero from "../Hero/Hero"
+import Footer from "../Footer";
+import Header from "../Header"
+import Hero from "../Hero"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
