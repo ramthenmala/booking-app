@@ -1,24 +1,36 @@
 import { Input } from "@nextui-org/input";
 import { useForm } from "react-hook-form";
-import { RegisterFormData } from "../types/RegisterFormData";
+import { RegisterFormDataType } from "../types/RegisterFormDataTypes";
 import { Button } from "@nextui-org/button";
 import { useMutation } from "react-query";
 import * as apiClient from "../client/api-client";
+import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterFormData>();
+
+    const { showToast } = useAppContext();
+    const navigate = useNavigate()
+
+    const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterFormDataType>();
 
     const mutation = useMutation(apiClient.register, {
-        onSuccess: () => { 
-            console.log('Registration Successfull')
+        onSuccess: () => {
+            showToast({
+                message: 'Registration Successfull',
+                type: 'SUCCESS'
+            })
+            navigate('/')
         },
-        onError: (error: Error) => { 
-            console.log(error.message)
+        onError: (error: Error) => {
+            showToast({
+                message: error.message,
+                type: 'ERROR'
+            })
         }
-    }, )
+    },)
 
     const onRegisterSubmit = handleSubmit((data) => {
-        console.log(data);
         mutation.mutate(data)
     })
 

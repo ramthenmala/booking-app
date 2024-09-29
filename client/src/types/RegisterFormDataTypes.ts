@@ -1,4 +1,4 @@
-export type RegisterFormData = {
+export type RegisterFormDataType = {
     firstName: string;
     lastName: string;
     password: string;

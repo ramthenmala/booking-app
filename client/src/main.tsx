@@ -3,22 +3,20 @@ import { createRoot } from 'react-dom/client'
 import { NextUIProvider } from "@nextui-org/system";
 import App from './App.tsx'
 import './index.css';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './utils/QueryClient.ts';
+import { AppContextProvider } from './context/AppContext.tsx';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 0
-    }
-  }
-})
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <NextUIProvider>
-        <App />
-      </NextUIProvider>
+      <AppContextProvider>
+        <NextUIProvider>
+          <App />
+        </NextUIProvider>
+      </AppContextProvider>
     </QueryClientProvider>
   </StrictMode>,
 )

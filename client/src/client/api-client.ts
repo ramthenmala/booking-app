@@ -1,4 +1,4 @@
-import { RegisterFormData } from "../types/RegisterFormData";
+import { RegisterFormData } from "../types/RegisterFormDataTypes";
 
 const API_BASE_URL = import.meta.env.VITE_API_BAE_URL;
 
