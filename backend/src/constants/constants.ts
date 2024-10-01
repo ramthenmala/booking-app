@@ -1,1 +1,0 @@
-export const saltRoutnds: number = 8;

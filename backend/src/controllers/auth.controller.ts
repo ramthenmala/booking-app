@@ -1,16 +1,10 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import { validationResult } from 'express-validator';
-import User from '../models/user';
-import { generateToken, setAuthTokenCookie } from '../utils/tokenUtils';
-import { sendErrorResponse } from '../utils/errorUtils';
+import User from '../models/user.model';
+import { generateToken, setAuthTokenCookie } from '../utils/token.util';
+import { sendErrorResponse } from '../utils/sendErrorResponse.util';
 
 const authController = async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return sendErrorResponse(res, 400, 'Invalid input data');
-    }
-
     const { email, password } = req.body;
 
     try {

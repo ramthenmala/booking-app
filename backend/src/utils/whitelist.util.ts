@@ -1,4 +1,4 @@
-const whitelistedUrls = ['http://localhost:5173'];
+import { whitelistedUrls } from "../constants/whitelistedUrls";
 
 export const corsOptions = {
     origin: (origin: string | undefined, callback: (err: Error | null, allowed?: boolean) => void) => {
@@ -8,6 +8,5 @@ export const corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    // origin: 'http://localhost:5173',
     credentials: true,
 };
