@@ -8,7 +8,7 @@ import authController from '../controllers/auth.controller';
 function routes(app: any) {
     app.get('/health', healthController);
     app.post('/api/users/register', validateResource(userValidationSchema), createUserController);
-    app.post('/api/login', validateResource(authValidationSchema), authController);
+    app.post('/api/auth/login', validateResource(authValidationSchema), authController);
 }
 
 export default routes;
