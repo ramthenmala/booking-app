@@ -1,6 +1,7 @@
 import express from 'express';
 import config from 'config';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import routes from './routes';
 import connect from './utils/connect.util';
 import logStatus from './utils/log.util';
@@ -10,6 +11,7 @@ const port = config.get<number>('port')
 
 const app = express();
 
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));

@@ -4,7 +4,7 @@ import { generateToken, setAuthTokenCookie } from '../utils/token.util';
 import { sendErrorResponse } from '../utils/sendErrorResponse.util';
 import logStatus from '../utils/log.util';
 
-const createUserController = async (req: Request, res: Response) => {
+const createUserHandler = async (req: Request, res: Response) => {
 
     try {
         const { email, ...rest } = req.body;
@@ -26,4 +26,4 @@ const createUserController = async (req: Request, res: Response) => {
     }
 };
 
-export default createUserController;
+export default createUserHandler;

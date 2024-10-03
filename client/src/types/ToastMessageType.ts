@@ -1,5 +1,5 @@
-export type ToastMessageType = {
+export interface ToastMessageType {
+    type: "success" | "error" | "info" | "warning";
     message: string;
-    type: 'SUCCESS' | 'ERROR';
-    onClose?: () => void
+    onClose?: () => void;
 }

@@ -1,5 +1,4 @@
-import { ToastMessage } from "./ToastMessageType"
-
-export type AppContextTypes = {
-    showToast: (toastMessage: ToastMessage) => void
+export interface AppContextTypes {
+    isLoggedIn: boolean,
+    isLoading: boolean;
 }

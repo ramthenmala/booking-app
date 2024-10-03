@@ -4,7 +4,7 @@ import User from '../models/user.model';
 import { generateToken, setAuthTokenCookie } from '../utils/token.util';
 import { sendErrorResponse } from '../utils/sendErrorResponse.util';
 
-const authController = async (req: Request, res: Response) => {
+const authHandler = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     try {
@@ -29,4 +29,6 @@ const authController = async (req: Request, res: Response) => {
     }
 };
 
-export default authController;
+
+
+export default authHandler;

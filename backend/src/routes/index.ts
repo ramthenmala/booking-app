@@ -1,14 +1,19 @@
-import healthController from '../controllers/health.controller';
-import createUserController from '../controllers/user.controller';
+import healthHandler from '../controllers/health.controller';
+import createUserHandler from '../controllers/user.controller';
+import authHandler from '../controllers/auth.controller';
+import authValidateHandler from '../controllers/validate.controller';
+import validateResource from '../middleware/validateResource.middleware';
+import verifyToken from '../middleware/verifyToken.middleware';
 import userValidationSchema from '../schema/user.validation';
-import validateResource from '../middleware/middleware';
 import authValidationSchema from '../schema/auth.validation';
-import authController from '../controllers/auth.controller';
 
 function routes(app: any) {
-    app.get('/health', healthController);
-    app.post('/api/users/register', validateResource(userValidationSchema), createUserController);
-    app.post('/api/auth/login', validateResource(authValidationSchema), authController);
+    app.get('/health', healthHandler);
+
+    app.post('/api/users/register', validateResource(userValidationSchema), createUserHandler);
+    app.post('/api/auth/login', validateResource(authValidationSchema), authHandler);
+    app.get('/api/auth/validate-token', verifyToken, authValidateHandler);
+
 }
 
 export default routes;
