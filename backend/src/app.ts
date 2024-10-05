@@ -6,10 +6,13 @@ import routes from './routes';
 import connect from './utils/connect.util';
 import logStatus from './utils/log.util';
 import { corsOptions } from './utils/whitelist.util';
+import path from 'path'
 
 const port = config.get<number>('port')
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, '../../client/dist')))
 
 app.use(cookieParser())
 app.use(express.json());

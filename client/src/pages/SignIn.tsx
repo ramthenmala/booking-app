@@ -13,7 +13,7 @@ import ToastProvider from "../Components/ToastProvider";
 const SignIn = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<Pick<RegisterFormDataType, 'email' | 'password'>>();
+    const { register, handleSubmit, formState: { errors }, } = useForm<Pick<RegisterFormDataType, 'email' | 'password'>>();
     const [toast, setToast] = useState<ToastMessageType | null>(null);
     const [isVisible, setIsVisible] = useState(false);
 
