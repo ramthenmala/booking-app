@@ -8,7 +8,7 @@ const AppContext = createContext<AppContextTypes | undefined>(undefined);
 export const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     
-    const { isError, isLoading } = useQuery('validateToken', apiClient.validateToken, {
+    const { isLoading } = useQuery('validateToken', apiClient.validateToken, {
         retry: false,
         onSuccess: () => {
             setIsLoggedIn(true); 

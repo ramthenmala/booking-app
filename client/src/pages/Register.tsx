@@ -4,7 +4,7 @@ import { Input } from "@nextui-org/input";
 import { useForm } from "react-hook-form";
 import { RegisterFormDataType } from "../types/RegisterFormDataTypes";
 import { Button } from "@nextui-org/button";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../client/api-client";
 import { useNavigate } from "react-router-dom";
 import { ToastMessageType } from '../types/ToastMessageType'
@@ -12,6 +12,7 @@ import ToastProvider from "../Components/ToastProvider";
 
 const Register = () => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterFormDataType>();
     const [toast, setToast] = useState<ToastMessageType | null>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -21,11 +22,12 @@ const Register = () => {
     const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
 
     const mutation = useMutation(apiClient.register, {
-        onSuccess: () => {
+        onSuccess: async() => {
             setToast({
                 message: 'Registration Successfull',
                 type: 'success' as Extract<ToastMessageType, { type: "success" }>
             })
+            await queryClient.invalidateQueries('validateToken');
             navigate('/');
         },
         onError: (error: Error) => {
