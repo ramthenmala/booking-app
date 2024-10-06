@@ -1,12 +1,13 @@
 import express from 'express';
 import config from 'config';
 import cors from 'cors';
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import routes from './routes';
 import connect from './utils/connect.util';
 import logStatus from './utils/log.util';
 import { corsOptions } from './utils/whitelist.util';
-import path from 'path'
+
 
 const port = config.get<number>('port')
 

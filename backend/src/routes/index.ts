@@ -7,6 +7,17 @@ import verifyToken from '../middleware/verifyToken.middleware';
 import userValidationSchema from '../schema/user.validation';
 import authValidationSchema from '../schema/auth.validation';
 import logoutUserHandler from '../controllers/logout.handler';
+import hotelsHandler from '../controllers/hotels.controller';
+
+import multer from 'multer';
+
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB
+    }
+})
 
 function routes(app: any) {
     app.get('/health', healthHandler);
@@ -16,6 +27,8 @@ function routes(app: any) {
     app.get('/api/auth/validate-token', verifyToken, authValidateHandler);
 
     app.post('/api/auth/logout', logoutUserHandler);
+    
+    app.post('/api/hotels', upload.array('imageFiles', 6), hotelsHandler);
 
 }
 
