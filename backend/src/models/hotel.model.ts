@@ -1,21 +1,5 @@
 import mongoose from "mongoose";
-
-export interface IHotel {
-    _id: string;
-    userId: string;
-    name: string;
-    city: string;
-    country: string;
-    description: string;
-    type: string;
-    adultCount: number;
-    childCount: number;
-    facilities: string[];
-    pricePerNight: number;
-    starRating: number;
-    imageUrls: string[];
-    lastUpdated: Date;
-}
+import { IHotel } from "../type/IHotels";
 
 const hotelSchema = new mongoose.Schema<IHotel>({
     userId: { type: String, required: true },

@@ -1,13 +1,15 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import cloudinary from 'cloudinary'
+import { IHotel } from "../type/IHotels";
 import logStatus from "../utils/log.util";
+import { IRequestUserId } from "../type/IRequestUserId";
+import Hotels from "../models/hotel.model";
 
-const hotelsHandler = async(req: Request, res: Response) => {
+const hotelsHandler = async (req: IRequestUserId, res: Response) => {
     try {
         const imageFiles = req.files as Express.Multer.File[];
-        const newHotel = req.body;
+        const newHotel: IHotel = req.body;
 
-        // Upload Images
         const uploadImages = imageFiles.map(async (image) => {
             const imageB64 = Buffer.from(image.buffer).toString('base64');
             let dataURI = 'data:' + image.mimetype + ';base64,' + imageB64;
@@ -16,14 +18,17 @@ const hotelsHandler = async(req: Request, res: Response) => {
             return res.url;
         });
 
-        const imageUrls = await Promise.all(uploadImages)
+        const imageUrls = await Promise.all(uploadImages);
+        newHotel.imageUrls = imageUrls;
+        newHotel.lastUpdated = new Date();
+        newHotel.userId = req.userId;
 
-        // if upload was successful add the URLs to the new hotel
-        
-        // Save the new hotel in our db
+        const hotel = new Hotels(newHotel);
+        await hotel.save()
 
-        // return a 201 status
-
+        return res.status(201).send({
+            message: 'Saved Successfully'
+        })
     } catch (error: any) {
         logStatus.error('Health Check Error: ', error);
         return res.status(500).json({ status: 'ERROR', message: 'Something went wrong' });
