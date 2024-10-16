@@ -12,8 +12,11 @@ const ManageHotelForm = () => {
     const formMethods = useForm<IHotel>();
     const { handleSubmit } = formMethods
 
-    const onHandleSubmit = handleSubmit((formData: IHotel) => {
-        console.log('formdata', formData)
+    const onHandleSubmit = handleSubmit((formDataJson: IHotel) => {
+        console.log('formdata', formDataJson)
+        const formData = new FormData();
+        
+
     })
 
     return (

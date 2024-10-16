@@ -39,13 +39,23 @@ function App() {
             </Layout>}
         />
         {isLoggedIn && (
-          <Route
-            path='/add-hotel'
-            element={
-              <Layout>
-                <AddHotel />
-              </Layout>}
-          />
+          <>
+            <Route
+              path='/add-hotel'
+              element={
+                <Layout>
+                  <AddHotel />
+                </Layout>}
+            />
+
+            <Route
+              path='/my-hotels'
+              element={
+                <Layout>
+                  <h1>My Htels</h1>
+                </Layout>}
+            />
+          </>
         )}
         {/* <Route
           path='*'
